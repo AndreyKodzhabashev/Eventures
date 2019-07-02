@@ -1,0 +1,52 @@
+﻿@page
+@model LoginModel
+
+@{
+    ViewData["Title"] = "Log in";
+}
+
+<div class="mx-auto w-25 text-md-center font-weight-bold">
+    <h1>@ViewData["Title"]</h1>
+    <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
+        <hr class="hr-2" />
+        <div asp-validation-summary="All" class="text-danger"></div>
+        <div class="row">
+            <div class="form-group container">
+                <label asp-for="Input.Username"></label>
+                <input asp-for="Input.Username" class="form-control" type="text" placeholder="Username..." />
+                <span asp-validation-for="Input.Username" class="text-danger"></span>
+            </div>
+        </div>
+        <div class="row">
+            <div class="form-group container">
+                <label asp-for="Input.Password"></label>
+                <input asp-for="Input.Password" class="form-control" type="password" placeholder="Password..." />
+                <span asp-validation-for="Input.Password" class="text-danger"></span>
+            </div>
+        </div>
+        <hr class="hr-2" />
+        <div class="form-group">
+            <div class="checkbox">
+                <label asp-for="Input.RememberMe">
+                    <input asp-for="Input.RememberMe" />
+                    @Html.DisplayNameFor(m => m.Input.RememberMe)
+                </label>
+            </div>
+        </div>
+        <hr class="hr-2" />
+        <div class="form-group">
+            <button type="submit" class="btn btn-primary">Log in</button>
+        </div>
+        <div class="form-group">
+            <p>
+                <a id="forgot-password" asp-page="./ForgotPassword">Forgot your password?</a>
+            </p>
+            <p>
+                <a asp-page="./Register" asp-route-returnUrl="@Model.ReturnUrl">Register as a new user</a>
+            </p>
+        </div>
+    </form>
+</div>
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

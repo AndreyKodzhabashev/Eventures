@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="jumbotron my-2 bg-eventures mx-auto w-75">
+    @if (this.User.Identity.IsAuthenticated)
+    {
+        <div class="text-center">
+            <h1>
+                Welcome, <span>@(this.User.IsInRole("Admin") ? "Administrator - " : "")</span>@this.User.Identity.Name!
+            </h1>
+            <hr class=" hr-2 bg-secondary" style="opacity:0.5" />
+            @if (this.User.IsInRole("Admin"))
+            {
+                <partial name="_AdminIndexPartial" />
+                
+            }
+            else
+            {
+                <partial name="_UserIndexPartial" />
+            }
+        </div>
+    }
+    else
+    {
+        <h1>Eventures - The best ticket service.</h1>
+        <hr class="hr-2 bg-dark" style="background-color:black" />
+        <h3 class="mt-4"><a href="/Identity/Account/Login">Login</a> if you have an account.</h3>
+        <h3 class="mt-4"><a href="/Identity/Account/Register">Register</a> if you don't have an account.</h3>
+    }
+  <vc
+</div>
+@section Scripts{ 
+  @*  <script>alert("Hi!")</script>*@
+}
